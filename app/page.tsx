@@ -325,7 +325,7 @@ export default function Home() {
                 width={100}
                 height={45}
                 alt="NOW"
-                className="w-14"
+                className="w-14 rotate-180"
               />
             </SheetTitle>
           </SheetHeader>
@@ -356,7 +356,7 @@ export default function Home() {
             width={100}
             height={45}
             alt="NOW"
-            className="w-14 md:w-16 lg:w-20 absolute opacity-90 animate__animated animate__fadeIn"
+            className="w-14 md:w-16 lg:w-20 absolute opacity-90 rotate-180 animate__animated animate__fadeIn"
           />
 
           <NavigationDesktop />
