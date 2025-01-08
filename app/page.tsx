@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image";
 import NavigationDesktop from "./_components/navigation-desktop";
 import { MenuIcon } from 'lucide-react';
@@ -9,289 +10,10 @@ import NavigationMobile from "./_components/navigation-mobile";
 import ContentSection from "./_components/ContentSection";
 import ContentSectionVertical from "./_components/ContentSectionVertical";
 
-// Section Names
-const sportsSection = "Premier League Highlights";
-const entertainmentSection = "Entertainment";
-const recentlySection = "Recently Added";
-const watchlistSection = "Watchlist";
-
-// View All Names
-const viewAllRegular = "View All";
-const viewallWatchlist = "My TV"
-
-// Sports data
-const sportsData = [
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/premier_league.png",
-    bannerImage: "/sports/banners/premier.jpg",
-    title: "Leicester V Man City",
-    description: "Leicester City play to Manchester City at the King Power Stadium in the Premier League. (29.12)",
-    classification: "U",
-    classAge: "",
-    duration: "3 mins",
-    year: "2024",
-    genre: "Football",
-    altText: "premier",
-  },
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/tennis.png",
-    bannerImage: "/sports/banners/tennis.jpg",
-    title: "Great Britain V Argentina",
-    description: "British number one Katie Boulter competes in United Cup group-stage action, as the 28-year-old Brit goes up against Argentina's Nadia Podoroska in Sydney. (30.12)",
-    classification: "",
-    classAge: "0",
-    duration: "3 hours",
-    year: "",
-    genre: "Tennis",
-    altText: "tennis",
-  },
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/darts.png",
-    bannerImage: "/sports/banners/darts.jpg",
-    title: "World Darts Championship D12: Afternoon Session",
-    description: "Ricky Evans and Robert Owen complete the third-round action, while in the last 16, Gerwyn Price plays Jonny Clayton and reigning champion Luke Humphries faces Peter Wright. (29.12)",
-    classification: "",
-    classAge: "0",
-    duration: "4 hours",
-    year: "",
-    genre: "Darts",
-    altText: "darts",
-  },
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/nfl.png",
-    bannerImage: "/sports/banners/nfl.jpg",
-    title: "Cowboys @ Eagles",
-    description: "Officially out of the playoff reckoning, the 49ers host a Detroit Lions side who recently put together a franchise-record 13th win - staying on top of the NFC in the process. (30.12)",
-    classification: "",
-    classAge: "0",
-    duration: "4 hours",
-    year: "",
-    genre: "American Football",
-    altText: "nfl",
-  },
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/cricket.png",
-    bannerImage: "/sports/banners/cricket.jpg",
-    title: "South Africa V Pakistan",
-    description: "The fifth and final day of the second Test match between South Africa and Pakistan in Centurion. (30.12)",
-    classification: "0",
-    classAge: "",
-    duration: "8h 30m",
-    year: "",
-    genre: "Cricket",
-    altText: "cricket",
-  },
-  {
-    viewAllText: "",
-    sectionName: sportsSection,
-    categoryImage: "/sports/category/football.png",
-    bannerImage: "/sports/banners/football.jpg",
-    title: "Sheff Utd V West Brom",
-    description: "Monday Night Football comes from Old Trafford as Manchester United face Newcastle. Ruben Amorim has collected just seven points from his six Premier League games in charge so far...",
-    classification: "S",
-    classAge: "0",
-    duration: "4h 30m",
-    year: "",
-    genre: "Football",
-    altText: "football",
-  },
-];
-
-// Entertainment data
-const entertainmentData = [
-  {
-    viewAllText: viewAllRegular,
-    sectionName: entertainmentSection,
-    categoryImage: "/entertainment/category/atlantic.png",
-    bannerImage: "/entertainment/banners/gameofthrones.jpg",
-    title: "Game of Thrones",
-    description: "The all-conquering, multi-Emmy-winning adaption of George R R Martin's rich yet brutal fantasy saga.",
-    classification: "",
-    classAge: "18",
-    duration: "8 Seasons",
-    year: "",
-    genre: "Drama",
-    altText: "Game of Thrones",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: entertainmentSection,
-    categoryImage: "/entertainment/category/atlantic.png",
-    bannerImage: "/entertainment/banners/thepenguin.jpg",
-    title: "The Penguin",
-    description: "In the next chapter in Matt Reeves' epic The Batman saga, this thrilling crime drama follows Oswald 'OZ' Cobb's quest for power and control in a fractured Gotham City.",
-    classification: "",
-    classAge: "18",
-    duration: "8 Episodes",
-    year: "",
-    genre: "Drama",
-    altText: "The Penguin",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: entertainmentSection,
-    categoryImage: "/entertainment/category/atlantic.png",
-    bannerImage: "/entertainment/banners/houseofthedragon.jpg",
-    title: "House of the Dragon",
-    description: "Based on George R R Martin's Fire & Blood, the BAFTA-winning series, set 200 years before the events of Game of Thrones, tells the story of House Targaryen.",
-    classification: "",
-    classAge: "18",
-    duration: "2 Seasons",
-    year: "",
-    genre: "Drama",
-    altText: "House of the Dragon",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: entertainmentSection,
-    categoryImage: "/entertainment/category/uandalibi.png",
-    bannerImage: "/entertainment/banners/theredking.jpg",
-    title: "The Red King",
-    description: "Chilling folk-horror following police sergeant Grace Narayan, who is sent on a 'punishment posting' to an island with an eerie religion, where the cold case of a missing boy unearths buried secrets.",
-    classification: "",
-    classAge: "15",
-    duration: "6 Episodes",
-    year: "",
-    genre: "Drama",
-    altText: "The Red King",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: entertainmentSection,
-    categoryImage: "/entertainment/category/comedy.png",
-    bannerImage: "/entertainment/banners/avenue5.jpg",
-    title: "Avenue 5",
-    description: "Hugh Laurie stars as the captain of luxury space cruiser Avenue 5 in this sci-fi comedy from Armando Iannucci, creator of The Thick Of It. What can possibly go wrong? A Sky...",
-    classification: "",
-    classAge: "15",
-    duration: "2 Seasons",
-    year: "",
-    genre: "Comedy",
-    altText: "Avenue 5",
-  },
-];
-
-// Recently Added data
-const recentlyData = [
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/thefallguy.jpg",
-    bannerCaller: "/cinema/banners/thefallguy.webp",
-    title: "The Fall Guy",
-    description: "Down-and-out stuntman Ryan Gosling sets out to find the missing star of his ex-girlfriend's blockbuster. Action with Emily Blunt.",
-    classification: "S",
-    classAge: "12",
-    duration: "2h 1m",
-    year: "2024",
-    genre: "Action",
-    altText: "The Fall Guy",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/kungfupanda4.jpg",
-    bannerCaller: "/cinema/banners/kungfupanda4.webp",
-    title: "Kung Fu Panda 4",
-    description: "Skadoosh! Jack Black's Po returns to find and train a new Dragon Warrior while a sorceress plans to summon all of his past enemies for revenge.",
-    classification: "PG",
-    classAge: "S",
-    duration: "1h 29min",
-    year: "",
-    genre: "Animation",
-    altText: "Kung Fu Panda 4",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/aquietplace.jpg",
-    bannerCaller: "/cinema/banners/aquietplacedayone.webp",
-    title: "A Quiet Place: Day One",
-    description: "Spin-off horror prequel with Lupita Nyong'o and Joseph Quinn. A small group attempts to survive an invasion in New York City.",
-    classification: "S",
-    classAge: "15",
-    duration: "1h 35m",
-    year: "2024",
-    genre: "Sci-Fi",
-    altText: "A Quiet Place: Day One",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/godzillaxkong.jpg",
-    bannerCaller: "/cinema/banners/godzillaxkongthenewempire.webp",
-    title: "Godzilla X Kong: The New Empire",
-    description: "Two ancient titans - Godzilla and Kong - clash in an epic battle against an undiscovered threat hidden within our world. Action-packed sci fi",
-    classification: "S",
-    classAge: "12",
-    duration: "1h 49m",
-    year: "2024",
-    genre: "Action",
-    altText: "Godzilla X Kong: The New Empire",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/wonka.jpg",
-    bannerCaller: "/cinema/banners/wonka.webp",
-    title: "Wonka",
-    description: "This is the story of how the world's greatest inventor, magician and chocolate-maker became the Willy Wonka we know today.",
-    classification: "PG",
-    classAge: "S",
-    duration: "1h 51m",
-    year: "2024",
-    genre: "Family",
-    altText: "Wonka",
-  },
-  {
-    viewAllText: viewAllRegular,
-    sectionName: recentlySection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/dune.jpg",
-    bannerCaller: "/cinema/banners/dunepart2.webp",
-    title: "Dune: Part Two (2024)",
-    description: "The son of a Duke seeks revenge against the conspirators who destroyed his family. Sci-fi sequel with Timothée Chalamet and Zendaya.",
-    classification: "S",
-    classAge: "12",
-    duration: "2h 39m",
-    year: "2024",
-    genre: "Action",
-    altText: "football",
-  },
-];
-
-// Watchlist data
-const watchlistData = [
-  {
-    viewAllText: viewallWatchlist,
-    sectionName: watchlistSection,
-    categoryImage: "/cinema/category/cinema.png",
-    bannerImage: "/cinema/banners/pulpfiction.jpg",
-    title: "Pulp Fiction",
-    description: "Quentin Tarantino's iconic crime drama follows the intertwining tales of mobsters and criminals on the streets of LA. With John Travolta, Bruce Willis and Samuel L Jackson.",
-    classification: "S",
-    classAge: "18",
-    duration: "2h 28m",
-    year: "1994",
-    genre: "Thriller",
-    altText: "Pulp Fiction",
-  },
-];
+import { sportsData } from './_data/sports';
+import { entertainmentData } from './_data/entertainment';
+import { recentlyData } from './_data/recently';
+import { watchlistData } from './_data/watchlist';
 
 export default function Home() {
   const [selectedSportsIndex, setSelectedSportsIndex] = useState(0);
@@ -424,7 +146,7 @@ export default function Home() {
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-1.5s`}>
             <ContentSection
               viewallText=""
-              sectionName={sportsSection}
+              sectionName={sportsData[0].sectionName}
               data={sportsData}
               selectedIndex={selectedSportsIndex}
               setSelectedIndex={(index) => {
@@ -439,8 +161,8 @@ export default function Home() {
           {/* Entertainment Data */}
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-1s`}>
             <ContentSection
-              viewallText={viewAllRegular}
-              sectionName={entertainmentSection}
+              viewallText={entertainmentData[0].viewAllText}
+              sectionName={entertainmentData[0].sectionName}
               data={entertainmentData}
               selectedIndex={selectedEntertainmentIndex}
               setSelectedIndex={(index) => {
@@ -455,8 +177,8 @@ export default function Home() {
           {/* Recently Added Data */}
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-2s`}>
             <ContentSectionVertical
-              viewallText={viewAllRegular}
-              sectionName={recentlySection}
+              viewallText={recentlyData[0].viewAllText}
+              sectionName={recentlyData[0].sectionName}
               data={recentlyData}
               selectedIndex={selectedRecentlyIndex}
               setSelectedIndex={(index) => {
@@ -471,8 +193,8 @@ export default function Home() {
           {/* Watchlist Data */}
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 mb-12 animate__animated animate__fadeInUp animate__delay-2.5s`}>
             <ContentSection
-              viewallText={viewallWatchlist}
-              sectionName={watchlistSection}
+              viewallText={watchlistData[0].viewAllText}
+              sectionName={watchlistData[0].sectionName}
               data={watchlistData}
               selectedIndex={selectedWatchlistIndex}
               setSelectedIndex={(index) => {
