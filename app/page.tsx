@@ -134,14 +134,17 @@ export default function Home() {
         <h3 className="relative z-20 animate__animated animate__fadeIn animate__delay-1.07s">{selectedItem.sectionName}<span className="opacity-45 ml-4">Home</span></h3>
       </div>
 
-      {/* CARD CONTENTS */}
+      {/* CARDS CONTENT */}
       <div id="scroll-container" className="relative z-30">
 
+        {/* TOP MASK */}
         <div className="bg-gradient-to-b from-[#001211] via-[rgba(0,18,17,0.85)] to-[transparent] bg-[length:100%_100%] h-[50px] w-full absolute left-0 right-0 top-0 z-40"></div>
 
+        {/* BOTTOM MASK */}
         <div className="bg-gradient-to-t from-[#001211] via-[rgba(0,18,17,0.85)] to-[transparent] bg-[length:100%_100%] h-[50px] w-full absolute left-0 right-0 bottom-0 z-40"></div>
 
-        <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[55dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%]">
+        {/* CARDS WRAPPER */}
+        <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[65dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%]">
 
           {/* Sports Data */}
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-1.5s`}>
