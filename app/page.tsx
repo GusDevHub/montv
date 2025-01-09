@@ -134,6 +134,7 @@ export default function Home() {
         <h3 className="relative z-20 animate__animated animate__fadeIn animate__delay-1.07s">{selectedItem.sectionName}<span className="opacity-45 ml-4">Home</span></h3>
       </div>
 
+      {/* CARD CONTENTS */}
       <div id="scroll-container" className="relative z-30">
 
         <div className="bg-gradient-to-b from-[#001211] via-[rgba(0,18,17,0.85)] to-[transparent] bg-[length:100%_100%] h-[50px] w-full absolute left-0 right-0 top-0 z-40"></div>
