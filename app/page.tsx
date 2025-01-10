@@ -144,7 +144,7 @@ export default function Home() {
         <div className="bg-gradient-to-t from-[#001211] via-[rgba(0,18,17,0.85)] to-[transparent] bg-[length:100%_100%] h-[50px] w-full absolute left-0 right-0 bottom-0 z-40"></div>
 
         {/* CARDS WRAPPER */}
-        <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[65dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%]">
+        <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[65dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%] animate__animated animate__fadeInUp animate__delay-1s">
 
           {/* Sports Data */}
           <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
