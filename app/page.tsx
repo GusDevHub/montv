@@ -147,7 +147,7 @@ export default function Home() {
         <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[65dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%]">
 
           {/* Sports Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-1.5s`}>
+          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
             <ContentSection
               viewallText=""
               sectionName={sportsData[0].sectionName}
@@ -163,7 +163,7 @@ export default function Home() {
           </div>
 
           {/* Entertainment Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-1s`}>
+          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
             <ContentSection
               viewallText={entertainmentData[0].viewAllText}
               sectionName={entertainmentData[0].sectionName}
@@ -179,7 +179,7 @@ export default function Home() {
           </div>
 
           {/* Recently Added Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 animate__animated animate__fadeInUp animate__delay-2s`}>
+          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
             <ContentSectionVertical
               viewallText={recentlyData[0].viewAllText}
               sectionName={recentlyData[0].sectionName}
@@ -195,7 +195,7 @@ export default function Home() {
           </div>
 
           {/* Watchlist Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 mb-12 animate__animated animate__fadeInUp animate__delay-2.5s`}>
+          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 mb-12`}>
             <ContentSection
               viewallText={watchlistData[0].viewAllText}
               sectionName={watchlistData[0].sectionName}
