@@ -218,7 +218,7 @@ export default function Home() {
       {/* DISCLAIM SECTION */}
       <div className="fixed bottom-5 right-2 z-30">
         <Popover>
-          <PopoverTrigger><span className="text-[9px] p-3 border rounded-lg">Disclaimer</span></PopoverTrigger>
+          <PopoverTrigger><span className="text-[9px] p-3 border rounded-lg opacity-75">Disclaimer</span></PopoverTrigger>
           <PopoverContent><p className="text-xs">This is not a commercial project. It has been created solely for the purpose of practical learning and educational development. No financial gain is being sought, and the work is not intended for commercial distribution or sale. All image and text content copyrights belong to SKY UK Limited.</p></PopoverContent>
         </Popover>
       </div>
