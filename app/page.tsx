@@ -39,7 +39,7 @@ export default function Home() {
         <SheetTrigger asChild>
           <Button className="absolute top-4 right-4 z-30 md:hidden bg-transparent border border-white/20" size={"icon"}><MenuIcon className="opacity-45" /></Button>
         </SheetTrigger>
-        <SheetContent className="bg border-l-transparent text-white min-w-[85%]">
+        <SheetContent className="bg border-l-transparent text-white min-w-[85%] overflow-y-auto [&::-webkit-scrollbar]:hidden">
           <SheetHeader>
             <SheetTitle className="mb-5">
               {/* LOGO */}
