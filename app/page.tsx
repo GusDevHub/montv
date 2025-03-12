@@ -1,43 +1,63 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import NavigationDesktop from "./_components/navigation-desktop";
-import { MenuIcon } from 'lucide-react';
+import { MenuIcon, PlayCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./_components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./_components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./_components/ui/sheet";
 import NavigationMobile from "./_components/navigation-mobile";
 import ContentSection from "./_components/ContentSection";
 import ContentSectionVertical from "./_components/ContentSectionVertical";
 
-import { sportsData } from './_data/sports';
-import { entertainmentData } from './_data/entertainment';
-import { recentlyData } from './_data/recently';
-import { watchlistData } from './_data/watchlist';
-import { Popover, PopoverContent, PopoverTrigger } from "./_components/ui/popover";
+import { sportsData } from "./_data/sports";
+import { entertainmentData } from "./_data/entertainment";
+import { recentlyData } from "./_data/recently";
+import { watchlistData } from "./_data/watchlist";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./_components/ui/popover";
+import Link from "next/link";
 
 export default function Home() {
   const [selectedSportsIndex, setSelectedSportsIndex] = useState(0);
-  const [selectedEntertainmentIndex, setSelectedEntertainmentIndex] = useState(-1);
+  const [selectedEntertainmentIndex, setSelectedEntertainmentIndex] =
+    useState(-1);
   const [selectedRecentlyIndex, setSelectedRecentlyIndex] = useState(-1);
   const [selectedWatchlistIndex, setSelectedWatchlistIndex] = useState(-1);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const [activeSection, setActiveSection] = useState<'sports' | 'entertainment' | 'recently' | 'watchlist'>('sports');
+  const [activeSection, setActiveSection] = useState<
+    "sports" | "entertainment" | "recently" | "watchlist"
+  >("sports");
 
-  const selectedItem = activeSection === 'sports'
-    ? sportsData[selectedSportsIndex]
-    : activeSection === 'entertainment'
+  const selectedItem =
+    activeSection === "sports"
+      ? sportsData[selectedSportsIndex]
+      : activeSection === "entertainment"
       ? entertainmentData[selectedEntertainmentIndex]
-      : activeSection === 'recently'
-        ? recentlyData[selectedRecentlyIndex]
-        : watchlistData[selectedWatchlistIndex];
+      : activeSection === "recently"
+      ? recentlyData[selectedRecentlyIndex]
+      : watchlistData[selectedWatchlistIndex];
 
   return (
     <div className="relative z-10 max-w-[1920px] mx-auto">
       {/* MOBILE MENU */}
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="absolute top-4 right-4 z-30 md:hidden bg-transparent border border-white/20" size={"icon"}><MenuIcon className="opacity-45" /></Button>
+          <Button
+            className="absolute top-4 right-4 z-30 md:hidden bg-transparent border border-white/20"
+            size={"icon"}
+          >
+            <MenuIcon className="opacity-45" />
+          </Button>
         </SheetTrigger>
         <SheetContent className="bg border-l-transparent text-white min-w-[85%] overflow-y-auto [&::-webkit-scrollbar]:hidden">
           <SheetHeader>
@@ -63,8 +83,9 @@ export default function Home() {
           width={1920}
           height={540}
           alt={selectedItem.altText}
-          className={`w-full h-auto object-cover z-0 ${shouldAnimate ? 'animate__animated animate__fadeIn' : ''
-            }`}
+          className={`w-full h-auto object-cover z-0 ${
+            shouldAnimate ? "animate__animated animate__fadeIn" : ""
+          }`}
           quality={100}
         />
         <div className="absolute bg-gradient-to-b from-[#000] via-[#001211] to-[transparent] bg-[length:100%_100%] w-full h-40 z-20 top-0 left-0 opacity-75"></div>
@@ -103,41 +124,79 @@ export default function Home() {
 
           {/* CARD TITLE */}
           <h1
-            className={`flex items-start justify-start uppercase font-extralight text-4xl text-wrap max-w-80 truncate min-h-20 max-h-20 ${shouldAnimate ? 'animate__animated animate__fadeInUp' : ''
-              }`}
+            className={`flex items-start justify-start uppercase font-extralight text-4xl text-wrap max-w-80 truncate min-h-20 max-h-20 ${
+              shouldAnimate ? "animate__animated animate__fadeInUp" : ""
+            }`}
             onAnimationEnd={() => setShouldAnimate(false)}
           >
             {selectedItem.title}
           </h1>
+          <Link
+            href={`https://youtube.com/results?search_query=${selectedItem.title} trailer`}
+            target="_blank"
+            className="absolute animate-pulse rounded-full bg-teal-500/55 top-16 right-5"
+          >
+            <PlayCircle
+              className="text-teal-100"
+              size={40}
+              style={{ strokeWidth: 0.5 }}
+            />
+          </Link>
 
           {/* CARD INFOS */}
           <div className="text-xs animate__animated animate__fadeIn animate__delay-1.06s">
             {selectedItem.genre && (
-              <>{selectedItem.genre} <span className="opacity-45 font-bold">&bull;</span></>)} {selectedItem.duration && (
-                <>{selectedItem.duration}{" "}
-                  <span className="opacity-45 font-bold">&bull;</span></>)} {selectedItem.year && (
-                    <>{selectedItem.year}{" "}
-                      <span className="opacity-45 font-bold">&bull;</span>{" "}</>)}
+              <>
+                {selectedItem.genre}{" "}
+                <span className="opacity-45 font-bold">&bull;</span>
+              </>
+            )}{" "}
+            {selectedItem.duration && (
+              <>
+                {selectedItem.duration}{" "}
+                <span className="opacity-45 font-bold">&bull;</span>
+              </>
+            )}{" "}
+            {selectedItem.year && (
+              <>
+                {selectedItem.year}{" "}
+                <span className="opacity-45 font-bold">&bull;</span>{" "}
+              </>
+            )}
             <span className="inline-flex items-center justify-between gap-1 w-fit">
               {selectedItem.classAge && (
-                <><span className="border border-white/20 rounded-sm px-1">{selectedItem.classAge}</span></>)}
+                <>
+                  <span className="border border-white/20 rounded-sm px-1">
+                    {selectedItem.classAge}
+                  </span>
+                </>
+              )}
               {selectedItem.classification && (
-                <><span className="border border-white/20 rounded-sm px-1">{selectedItem.classification}</span></>)}
+                <>
+                  <span className="border border-white/20 rounded-sm px-1">
+                    {selectedItem.classification}
+                  </span>
+                </>
+              )}
             </span>
           </div>
 
           {/* CARD SHORT DESCRIPTION */}
           {selectedItem.description && (
-            <p className="flex items-start justify-start text-sm max-w-80 animate__animated animate__fadeIn animate__delay-1.07s">{selectedItem.description}</p>
+            <p className="flex items-start justify-start text-sm max-w-80 animate__animated animate__fadeIn animate__delay-1.07s">
+              {selectedItem.description}
+            </p>
           )}
         </div>
         {/* CATEGORY BREADCRUMBS */}
-        <h3 className="relative z-20 animate__animated animate__fadeIn animate__delay-1.07s">{selectedItem.sectionName}<span className="opacity-45 ml-4">Home</span></h3>
+        <h3 className="relative z-20 animate__animated animate__fadeIn animate__delay-1.07s">
+          {selectedItem.sectionName}
+          <span className="opacity-45 ml-4">Home</span>
+        </h3>
       </div>
 
       {/* CARDS CONTENT */}
       <div id="scroll-container" className="relative z-30">
-
         {/* TOP MASK */}
         <div className="bg-gradient-to-b from-[#001211] via-[rgba(0,18,17,0.85)] to-[transparent] bg-[length:100%_100%] h-[50px] w-full absolute left-0 right-0 top-0 z-40"></div>
 
@@ -146,9 +205,10 @@ export default function Home() {
 
         {/* CARDS WRAPPER */}
         <div className="ml-4 md:ml-8 overflow-y-auto [&::-webkit-scrollbar]:hidden max-h-[65dvh] md:max-h-[45dvh] h-fit relative z-30  bg-gradient-to-t from-[#001211] via-[#001211] to-[rgba(0,18,17,0.8)] bg-[length:100%_100%]">
-
           {/* Sports Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
+          <div
+            className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}
+          >
             <ContentSection
               viewallText=""
               sectionName={sportsData[0].sectionName}
@@ -156,7 +216,7 @@ export default function Home() {
               selectedIndex={selectedSportsIndex}
               setSelectedIndex={(index) => {
                 setSelectedSportsIndex(index);
-                setActiveSection('sports');
+                setActiveSection("sports");
                 setShouldAnimate(true);
               }}
               showViewAllAtStart={false}
@@ -164,7 +224,9 @@ export default function Home() {
           </div>
 
           {/* Entertainment Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
+          <div
+            className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}
+          >
             <ContentSection
               viewallText={entertainmentData[0].viewAllText}
               sectionName={entertainmentData[0].sectionName}
@@ -172,7 +234,7 @@ export default function Home() {
               selectedIndex={selectedEntertainmentIndex}
               setSelectedIndex={(index) => {
                 setSelectedEntertainmentIndex(index);
-                setActiveSection('entertainment');
+                setActiveSection("entertainment");
                 setShouldAnimate(true);
               }}
               showViewAllAtStart={true}
@@ -180,7 +242,9 @@ export default function Home() {
           </div>
 
           {/* Recently Added Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}>
+          <div
+            className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2`}
+          >
             <ContentSectionVertical
               viewallText={recentlyData[0].viewAllText}
               sectionName={recentlyData[0].sectionName}
@@ -188,7 +252,7 @@ export default function Home() {
               selectedIndex={selectedRecentlyIndex}
               setSelectedIndex={(index) => {
                 setSelectedRecentlyIndex(index);
-                setActiveSection('recently');
+                setActiveSection("recently");
                 setShouldAnimate(true);
               }}
               showViewAllAtStart={true}
@@ -196,7 +260,9 @@ export default function Home() {
           </div>
 
           {/* Watchlist Data */}
-          <div className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 mb-12`}>
+          <div
+            className={`flex overflow-x-auto [&::-webkit-scrollbar]:hidden relative z-20 pl-2 mb-12`}
+          >
             <ContentSection
               viewallText={watchlistData[0].viewAllText}
               sectionName={watchlistData[0].sectionName}
@@ -204,22 +270,33 @@ export default function Home() {
               selectedIndex={selectedWatchlistIndex}
               setSelectedIndex={(index) => {
                 setSelectedWatchlistIndex(index);
-                setActiveSection('watchlist');
+                setActiveSection("watchlist");
                 setShouldAnimate(true);
               }}
               showViewAllAtStart={true}
               showViewAllAtEnd={false}
             />
           </div>
-
         </div>
       </div>
 
       {/* DISCLAIM SECTION */}
       <div className="fixed bottom-5 right-2 z-30">
         <Popover>
-          <PopoverTrigger><span className="text-[9px] p-3 border rounded-lg opacity-75 hover:opacity-100 hover:bg-[rgba(0,18,17,0.85)] hover:border-[rgba(0,18,17,0.85)] hover:text-yellow-400">Disclaimer</span></PopoverTrigger>
-          <PopoverContent className="bg text-yellow-500 border-[rgba(0,18,17,0.95)]"><p className="text-[10px]">This is not a commercial project. It has been created solely for the purpose of practical learning and educational development. No financial gain is being sought, and the work is not intended for commercial distribution or sale. Images and text content copyrights belong to <em>SKY UK Limited</em>.</p></PopoverContent>
+          <PopoverTrigger>
+            <span className="text-[9px] p-3 border rounded-lg opacity-75 hover:opacity-100 hover:bg-[rgba(0,18,17,0.85)] hover:border-[rgba(0,18,17,0.85)] hover:text-yellow-400">
+              Disclaimer
+            </span>
+          </PopoverTrigger>
+          <PopoverContent className="bg text-yellow-500 border-[rgba(0,18,17,0.95)]">
+            <p className="text-[10px]">
+              This is not a commercial project. It has been created solely for
+              the purpose of practical learning and educational development. No
+              financial gain is being sought, and the work is not intended for
+              commercial distribution or sale. Images and text content
+              copyrights belong to <em>SKY UK Limited</em>.
+            </p>
+          </PopoverContent>
         </Popover>
       </div>
     </div>
