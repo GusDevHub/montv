@@ -3,7 +3,7 @@
 import Image from "next/image";
 import NavigationDesktop from "./_components/navigation-desktop";
 import { MenuIcon, PlayCircle } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./_components/ui/button";
 import {
   Sheet,
@@ -37,6 +37,38 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<
     "sports" | "entertainment" | "recently" | "watchlist"
   >("sports");
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const preloadImages = async () => {
+      const allData = [
+        ...sportsData,
+        ...entertainmentData,
+        ...recentlyData,
+        ...watchlistData,
+      ];
+      const imagePromises = allData.map((item) => {
+        return new Promise((resolve, reject) => {
+          const img = new globalThis.Image();
+          img.src = item.bannerImage;
+          img.onload = resolve;
+          img.onerror = reject;
+          img.crossOrigin = "anonymous";
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to preload images:", error);
+        setIsLoading(false);
+      }
+    };
+
+    preloadImages();
+  }, []);
 
   const selectedItem =
     activeSection === "sports"
@@ -78,16 +110,25 @@ export default function Home() {
       <div className="absolute bg-gradient-to-tr from-[#001211] via-[#001211] to-[transparent] bg-[length:100%_100%] w-1/2 h-full z-20 top-0 left-0"></div>
       {/* CARD SELECTED IMAGE BACKGROUND */}
       <div className="absolute w-[85%] max-h-60 z-10 right-0 top-0">
-        <Image
-          src={selectedItem.bannerImage}
-          width={1920}
-          height={540}
-          alt={selectedItem.altText}
-          className={`w-full h-auto object-cover z-0 ${
-            shouldAnimate ? "animate__animated animate__fadeIn" : ""
-          }`}
-          quality={100}
-        />
+        {isLoading ? (
+          <div className="w-full h-[540px] bg-gradient-to-r from-gray-800/30 to-gray-700/20 animate-pulse flex items-center justify-center">
+            <div className="text-white/70">Loading content...</div>
+          </div>
+        ) : (
+          <Image
+            src={selectedItem.bannerImage}
+            width={1920}
+            height={540}
+            alt={selectedItem.altText}
+            className={`w-full h-auto object-cover z-0 ${
+              shouldAnimate ? "animate__animated animate__fadeIn" : ""
+            }`}
+            quality={85}
+            priority={true}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEtAI8V7yQCgAAAABJRU5ErkJggg=="
+          />
+        )}
         <div className="absolute bg-gradient-to-b from-[#000] via-[#001211] to-[transparent] bg-[length:100%_100%] w-full h-40 z-20 top-0 left-0 opacity-75"></div>
       </div>
 
